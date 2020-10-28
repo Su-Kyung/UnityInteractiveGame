@@ -5,7 +5,7 @@ using UnityEngine;
 // TODO: basket에 사과 넣으면 10점 더하도록
 public class g1_BasketCtrl : MonoBehaviour
 {
-    public g1_ScoreMng sm;     //g1_ScoreMng와 연결
+    public g1_ScoreMng sm;     //ScoreMng와 연결
 
     private void OnCollisionEnter(Collision other)
     {

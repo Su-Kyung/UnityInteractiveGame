@@ -2797,6 +2797,106 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 974861179}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1010959161
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2123763289}
+    m_Modifications:
+    - target: {fileID: 5562983634140249043, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_Name
+      value: Walls
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983633640426614, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5562983634612940453, guid: aeadfbc205076eb42a38ca6a677c61a9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aeadfbc205076eb42a38ca6a677c61a9, type: 3}
+--- !u!4 &1010959162 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5562983634140249042, guid: aeadfbc205076eb42a38ca6a677c61a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1010959161}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1037937705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5193,7 +5293,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Stage Clear
+  m_Text: Stage1 Clear
 --- !u!222 &1875195377
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5487,6 +5587,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1523396227}
+  - {fileID: 1010959162}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
