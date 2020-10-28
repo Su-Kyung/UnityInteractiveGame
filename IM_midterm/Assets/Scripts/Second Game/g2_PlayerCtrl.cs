@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 // TODO 1: 플레이어의 움직임 control.
 //          방향키 방향대로 움직이며, 마우스로 방향 회전
@@ -23,11 +24,21 @@ public class g2_PlayerCtrl : MonoBehaviour
     Rigidbody rb;
     Transform tr;
 
+    // UI 및 점수
+    public Text scoreText;
+    public Text chanceText;
+    public GameObject gameClear;    // 게임 클리어 UI
+    public GameObject gameOver;
+    public int endScore = 150;  // 종료 점수
+
+    int score = 0;
+    int chance = 5;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         tr = GetComponent<Transform>();
-        ads = GetComponent<AudioSource>();      // 
+        ads = GetComponent<AudioSource>();      //
     }
 
     // Update is called once per frame
@@ -79,11 +90,28 @@ public class g2_PlayerCtrl : MonoBehaviour
         {
             ads.PlayOneShot(correctSnd);
             Destroy(coll.gameObject);
+
+            score += 10;
+            scoreText.text = "점수 " + score;
+
+            if (score >= endScore)              // 종료 점수이면
+            {
+                gameClear.SetActive(true);      // Game Clear 출력
+            }
         }
         else if (coll.gameObject.tag.ToString() == "Bomb")
         {
             ads.PlayOneShot(wrongSnd);
             Destroy(coll.gameObject);
+
+            --chance;
+            chanceText.text = "기회 " + chance;
+
+            if (chance <= 0)
+            {
+                gameOver.SetActive(true);
+                Destroy(gameObject, 1);
+            }
         }
     }
 }
