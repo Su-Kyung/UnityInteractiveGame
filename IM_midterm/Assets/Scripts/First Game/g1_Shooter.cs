@@ -28,8 +28,8 @@ public class g1_Shooter : MonoBehaviour
         {
             ads.PlayOneShot(sound);
 
-            Vector3 delta = Input.mousePosition - beginPos;
-            Vector3 force = new Vector3(delta.x, delta.y, Mathf.Abs(delta.y))*2;
+            Vector3 delta = (Input.mousePosition - beginPos)*0.5f;
+            Vector3 force = new Vector3(delta.x, delta.y, Mathf.Abs(delta.y));
 
             GameObject obj = Instantiate(bullet);
             obj.GetComponent<Rigidbody>().AddForce(force * 5);

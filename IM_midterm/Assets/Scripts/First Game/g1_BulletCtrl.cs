@@ -10,6 +10,6 @@ public class g1_BulletCtrl : MonoBehaviour
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponentInChildren<ParticleSystem>().Play();
 
-        Destroy(gameObject, 2);
+        Destroy(gameObject, 0.5f);
     }
 }
