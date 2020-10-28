@@ -2,16 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// TODO: 플레이어의 움직임 control.
-// 방향키 방향대로 움직이며, 마우스로 방향 회전
+// TODO 1: 플레이어의 움직임 control.
+//          방향키 방향대로 움직이며, 마우스로 방향 회전
+// TODO 2: 아이템과의 충돌 처리
 public class g2_PlayerCtrl : MonoBehaviour
 {
+    // 플레이어의 움직임 컨트롤
     public float moveSpeed = 10;
     public float rotSpeed = 100;
     public float force = 300;
     Vector3 AXIS_X = new Vector3(1, 0, 0);
     Vector3 AXIS_Y = new Vector3(0, 1, 0);
     Vector3 AXIS_Z = new Vector3(0, 0, 1);
+
+    // 아이템과의 충돌 시 플레이할 오디오 소스
+    public AudioClip correctSnd;
+    public AudioClip wrongSnd;
+    private AudioSource ads;
 
     Rigidbody rb;
     Transform tr;
@@ -20,6 +27,7 @@ public class g2_PlayerCtrl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         tr = GetComponent<Transform>();
+        ads = GetComponent<AudioSource>();      // 
     }
 
     // Update is called once per frame
@@ -59,6 +67,23 @@ public class g2_PlayerCtrl : MonoBehaviour
             {
                 rb.AddForce(0, force, 0);
             }
+        }
+    }
+
+    // 플레이어와 아이템 충돌 처리 함수
+    private void OnCollisionEnter(Collision coll)
+    {
+        Debug.Log(coll.gameObject.tag.ToString());
+
+        if (coll.gameObject.tag.ToString() == "Item")
+        {
+            ads.PlayOneShot(correctSnd);
+            Destroy(coll.gameObject);
+        }
+        else if (coll.gameObject.tag.ToString() == "Bomb")
+        {
+            ads.PlayOneShot(wrongSnd);
+            Destroy(coll.gameObject);
         }
     }
 }
