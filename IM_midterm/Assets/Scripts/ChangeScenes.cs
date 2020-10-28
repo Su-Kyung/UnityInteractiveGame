@@ -20,13 +20,13 @@ public class ChangeScenes : MonoBehaviour
         SceneManager.LoadScene("3.SecondGameScene");
     }
 
-    public void ChangeGame3Scene()
-    {
-        SceneManager.LoadScene("4.ThirdGameScene");
-    }
-
     public void ChangeEndingScene()
     {
-        SceneManager.LoadScene("5.EndingScene");
+        SceneManager.LoadScene("4.EndingScene");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

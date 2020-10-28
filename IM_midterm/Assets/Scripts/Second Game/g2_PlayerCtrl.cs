@@ -110,7 +110,6 @@ public class g2_PlayerCtrl : MonoBehaviour
             if (chance <= 0)
             {
                 gameOver.SetActive(true);
-                Destroy(gameObject, 1);
             }
         }
     }
