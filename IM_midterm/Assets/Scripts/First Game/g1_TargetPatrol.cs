@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// 과녁이 순찰 지점 중 랜덤으로 한 곳을 목적지로 설정하여 이동
+// TODO: 목표물 순찰 -> 과녁이 순찰 지점 중 랜덤으로 한 곳을 목적지로 설정하여 이동
 public class g1_TargetPatrol : MonoBehaviour
 {
     public Transform[] wayPotins;

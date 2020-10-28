@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: 발사체 생성기 -> 마우스를 드래그 하여 그 방향과 힘으로 사과 발사
 public class g1_Shooter : MonoBehaviour
 {
     public GameObject bullet;
@@ -28,7 +29,7 @@ public class g1_Shooter : MonoBehaviour
             ads.PlayOneShot(sound);
 
             Vector3 delta = Input.mousePosition - beginPos;
-            Vector3 force = new Vector3(delta.x, delta.y, Mathf.Abs(delta.y));
+            Vector3 force = new Vector3(delta.x, delta.y, Mathf.Abs(delta.y))*2;
 
             GameObject obj = Instantiate(bullet);
             obj.GetComponent<Rigidbody>().AddForce(force * 5);
