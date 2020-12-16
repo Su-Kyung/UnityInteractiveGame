@@ -39,7 +39,7 @@ public class ZombieAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attack)
+        if (Vector3.Distance(this.transform.position, playerTr.position) <= 2.0f)
         {
             // 현재 시간이 다음 발사 시간보다 큰지를 확인
             if (Time.time >= nextAttack)
@@ -48,6 +48,7 @@ public class ZombieAttack : MonoBehaviour
                 // 다음 발사 시간 계산
                 nextAttack = Time.time + attackRate + Random.Range(0.0f, 0.5f);
             }
+            else GameObject.Find("Player").GetComponent<PlayerDamage>().isDamaged = false;
 
             // 주인공이 있는 위치까지의 회전 각도 계산
             Quaternion rot = Quaternion.LookRotation(playerTr.position - enemyTr.position);
@@ -58,8 +59,11 @@ public class ZombieAttack : MonoBehaviour
 
     void Attack()
     {
+        // Player 공격 (체력 감소)
+        GameObject.Find("Player").GetComponent<PlayerDamage>().isDamaged = true;
         animator.SetTrigger("attack");
-        //muzzleFlash.Play();
         
+        //muzzleFlash.Play();
     }
+
 }

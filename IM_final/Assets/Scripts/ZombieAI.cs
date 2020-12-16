@@ -33,8 +33,6 @@ public class ZombieAI : MonoBehaviour
     // Animator 컴포넌트를 저장할 변수
     Animator animator;
 
-    // 총 발사를 제어하는 EnemyFire 클래스를 저장할 변수
-    //w11_EnemyFire enemyFire;
     // 공격을 제어하는 ZombieAttack 클래스를 저장할 변수
     ZombieAttack zombieAttack;
 
@@ -107,31 +105,26 @@ public class ZombieAI : MonoBehaviour
             {
                 // 순찰 : 정해진 포인트 순찰
                 case State.PATROL:
-                    zombieAttack.attack = false;    // 좀비 공격 정지
                     // 순찰 모드를 활성화
                     moveZombie.SetPatrolling(true);
                     break;
                 // 추적 : 플레이어 추적
                 case State.TRACE:
-                    zombieAttack.attack = false;    // 좀비 공격 정지
                     // 주인공의 위치를 넘겨 추적 모드로 변경
                     moveZombie.SetTraceTarget(playerTr.position);
                     break;
                 // 공격 : 플레이어 공격
                 case State.ATTACK:
-                    if (zombieAttack.attack == false)
-                        zombieAttack.attack = true; // 좀비 공격 시작
+                    //
                     break;
                 // 피해 : 피해입었을 때
                 case State.DAMAGE:
-                    zombieAttack.attack = false;    // 좀비 공격 정지
                     moveZombie.Stop();  // 순찰 및 추적을 정지
                     animator.SetTrigger("damage");  // 피해 애니메이션 실행
                     break;
-                // 죽음 : 죽었을 때
+                // 죽음 : 죽었을 때 (좀비 특성 살리기 위해 좀비 죽은 사체 가까이 가면 공격받을 수 있음!)
                 case State.DIE:
                     isDie = true;
-                    zombieAttack.attack = false;    // 좀비 공격 정지
                     moveZombie.Stop();   // 순찰 및 추적을 정지
                     animator.SetTrigger("death"); // 사망 애니메이션 실행
                     GetComponent<CapsuleCollider>().enabled = false;

@@ -485,13 +485,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 101018189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d86e18ccaadf36048873ae61f1699822, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b73f4d4f0d16a447a61886ecf903d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   points: []
-  enemy: {fileID: 999423864667293823, guid: 9dee89edd4ebb8a4799a87d16b527ccf, type: 3}
+  zombie: {fileID: 999423864667293823, guid: 9dee89edd4ebb8a4799a87d16b527ccf, type: 3}
   createTime: 2
-  maxEnemy: 5
+  maxZombie: 5
   isGameOver: 0
   killText: {fileID: 46457108}
   restartBtn: {fileID: 1089647069}
@@ -2284,22 +2284,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 28309288}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &537244979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537244978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a4fce5854bab1a4a918e6d03b24226d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currHp: 100
-  bloodScreen: {fileID: 853113936}
-  hpBar: {fileID: 958783701}
-  gameMng: {fileID: 101018190}
 --- !u!114 &537244980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2516,6 +2500,23 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 28309288}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &537244990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537244978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8cc8b2ee6fd9ac40b1ba6e15ae9fec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currHp: 100
+  bloodScreen: {fileID: 853113936}
+  hpBar: {fileID: 958783701}
+  gameMng: {fileID: 0}
+  isDamaged: 0
 --- !u!1001 &564273688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3859,7 +3860,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 101018190}
+      - m_Target: {fileID: 0}
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:

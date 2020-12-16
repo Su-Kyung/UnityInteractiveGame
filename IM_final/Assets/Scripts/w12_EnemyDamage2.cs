@@ -19,11 +19,17 @@ public class w12_EnemyDamage2 : MonoBehaviour
     // 생명 수치에 따라 fillAmount 속성을 변경할 Image
     private Image hpBarImage;
 
+    // Animator 컴포넌트를 저장할 변수
+    Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         // 혈흔 효과 프리팹을 로드
         bloodEffect = Resources.Load<GameObject>("BulletImpactFleshBigEffect");
+
+        animator = GetComponent<Animator>();
+
         // 생명 게이지의 생성 및 초기화
         SetHpBar();
     }
@@ -33,26 +39,28 @@ public class w12_EnemyDamage2 : MonoBehaviour
         if (coll.collider.tag == "BULLET")
         {
             Destroy(coll.gameObject);
-            //hp -= coll.gameObject.GetComponent<BulletCtrl>().damage;
 
             w9_BulletCtrl bc = coll.gameObject.GetComponent<w9_BulletCtrl>();
             if (bc != null) //스크립트를 얻어왔을 때만(플레이어 총알에 맞았을때)
             {
                 hp -= bc.damage;
                 ShowBloodEffect(coll);
-
+                animator.SetTrigger("damage");
+                
                 // 생명 게이지의 fillAmount 속성을 변경
                 hpBarImage.fillAmount = hp / 100.0f;
             }
 
             if (hp <= 0.0f)
             {
-                //GetComponent<w11_EnemyAI5>().state = w11_EnemyAI5.State.DIE;
-                //GetComponent<w11_EnemyAI6>().state = w11_EnemyAI6.State.DIE;
-                GetComponent<w12_EnemyAI7>().state = w12_EnemyAI7.State.DIE;
+                GetComponent<ZombieAI>().state = ZombieAI.State.DIE;
 
                 // 적 캐릭터가 사망한 이후 생명 게이지를 투명 처리
                 hpBarImage.GetComponentsInParent<Image>()[1].color = Color.clear;
+                
+
+                Destroy(gameObject, 5);
+                GameObject.Find("GameManager").GetComponent<GameManager>().AddKillCount();
             }
         }
     }
