@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: []
-  enemy: {fileID: 5996248098126052350, guid: 6b9c6c3defadcd741b60c14a85d8951f, type: 3}
+  enemy: {fileID: 999423864667293823, guid: 9dee89edd4ebb8a4799a87d16b527ccf, type: 3}
   createTime: 2
   maxEnemy: 5
   isGameOver: 0
