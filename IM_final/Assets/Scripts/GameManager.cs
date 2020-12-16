@@ -17,10 +17,24 @@ public class GameManager : MonoBehaviour
     // 게임 종료 여부를 판단할 변수
     public bool isGameOver = false;
 
+    public Transform[] itemPoints;  // 생성지점 위치 리스트
+    public GameObject item; // 생성할 아이템 프리팹 (구급상자)
+    public bool isGameClear = false;    // 게임 클리어 판단
+    public int numItemPoint = 9;    // 아이템 포인트 개수
+    int numItem = 0;    // 생성 아이템 개수
+
+
     // Kill Count 표시
     public Text killText;
     // 좀비를 죽인 횟수
     int killCount = 0;
+
+    // Item Count 표시
+    public Text itemText;
+    // 아이템 먹은 횟수
+    int itemCount = 0;
+
+
 
     // 재시작 버튼
     public GameObject restartBtn;
@@ -34,6 +48,12 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(this.CreateZombie());
         }
+
+        // 하이러키 뷰의 ItemPointGroup을 찾아 하위에 있는 모든 Transform 컴포넌트를 찾아온다.
+        itemPoints = GameObject.Find("ItemPointGroup").GetComponentsInChildren<Transform>();
+        if (itemPoints.Length > 0) CreateItem();
+        
+        bool[] createItem = new bool[numItemPoint];    // 아이템 생성 위한 배열
     }
 
     // 좀비를 생성하는 코루틴 함수
@@ -64,6 +84,34 @@ public class GameManager : MonoBehaviour
         restartBtn.SetActive(true);
     }
 
+    // 구급상자 아이템을 생성하는 함수
+    void CreateItem()
+    {
+        for (int i = 0; i < numItemPoint; i++)
+        {
+            bool randItem = (Random.value > 0.5f);
+
+            if (randItem)
+            {
+                Instantiate(item, itemPoints[i].position, itemPoints[i].rotation);
+                numItem++;
+
+                itemText.text = "Item(count/total) 0/" + numItem;
+            }
+            
+        }
+       
+        // 만약 0개라면 가장 먼 위치에 생성
+        if (numItem == 0) Instantiate(item, itemPoints[1].position, itemPoints[1].rotation);
+
+
+        //if (isGameClear)
+        //{
+        //    // 재시작 버튼 활성화
+        //    restartBtn.SetActive(true);
+        //}
+    }
+
     public void Restart()
     {
         // 씬을 다시 로드
@@ -77,5 +125,11 @@ public class GameManager : MonoBehaviour
     {
         ++killCount;    // 횟수 증가
         killText.text = "Kill Count" + killCount;
+    }
+
+    public void AddItemCount()
+    {
+        ++itemCount;    // 개수 증가
+        itemText.text = "Item(count/total) " + itemCount + "/" + numItem;
     }
 }

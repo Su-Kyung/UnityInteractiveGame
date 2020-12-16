@@ -13,5 +13,6 @@ public class w9_BulletCtrl : MonoBehaviour
     void Start()
     {
         GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+        Destroy(gameObject, 1.0f);  // 가까이 있을 때만 공격 가능하도록 1초뒤 파괴
     }
 }
