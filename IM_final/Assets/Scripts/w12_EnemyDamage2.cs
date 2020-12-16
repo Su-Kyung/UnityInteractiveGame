@@ -22,6 +22,10 @@ public class w12_EnemyDamage2 : MonoBehaviour
     // Animator 컴포넌트를 저장할 변수
     Animator animator;
 
+    // 좀비 죽을 때 음원
+    public AudioClip dieAC;
+    AudioSource ads; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +36,9 @@ public class w12_EnemyDamage2 : MonoBehaviour
 
         // 생명 게이지의 생성 및 초기화
         SetHpBar();
+
+        // 오디오소스 컴포넌트 가져오기
+        ads = GetComponent<AudioSource>();
     }
 
     void OnCollisionEnter(Collision coll)
@@ -57,7 +64,9 @@ public class w12_EnemyDamage2 : MonoBehaviour
 
                 // 적 캐릭터가 사망한 이후 생명 게이지를 투명 처리
                 hpBarImage.GetComponentsInParent<Image>()[1].color = Color.clear;
-                
+
+                ads.PlayOneShot(dieAC);
+                ads.volume = 0.3f;
 
                 Destroy(gameObject, 5);
                 GameObject.Find("GameManager").GetComponent<GameManager>().AddKillCount();

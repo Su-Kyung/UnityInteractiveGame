@@ -20,7 +20,6 @@ public class ItemCtrl : MonoBehaviour
         if (Vector3.Distance(this.transform.position, playerTr.position) <= 0.5f)
         {
             Destroy(gameObject);
-            Debug.Log("충돌!");
             GameObject.Find("GameManager").GetComponent<GameManager>().AddItemCount();
         }
     }

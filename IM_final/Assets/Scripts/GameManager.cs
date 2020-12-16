@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
 
     // 재시작 버튼
     public GameObject restartBtn;
+    // 클리어 버튼
+    public GameObject clearBtn;
+    // 나가기 버튼
+    public GameObject startBtn;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +58,7 @@ public class GameManager : MonoBehaviour
         if (itemPoints.Length > 0) CreateItem();
         
         bool[] createItem = new bool[numItemPoint];    // 아이템 생성 위한 배열
+
     }
 
     // 좀비를 생성하는 코루틴 함수
@@ -82,6 +87,8 @@ public class GameManager : MonoBehaviour
 
         // 재시작 버튼 활성화
         restartBtn.SetActive(true);
+
+        startBtn.SetActive(true);
     }
 
     // 구급상자 아이템을 생성하는 함수
@@ -118,7 +125,31 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("GameScene");
         // 재시작 버튼 비활성화
         restartBtn.SetActive(false);
+        startBtn.SetActive(false);
         isGameOver = false;
+    }
+
+    public void Clear()
+    {
+        // 씬을 다시 로드
+        SceneManager.LoadScene("GameScene");
+        
+        // 게임 클리어 버튼 비활성화
+        clearBtn.SetActive(false);
+        startBtn.SetActive(false);
+
+    }
+
+    public void GoStart()
+    {
+        // 씬을 로드
+        SceneManager.LoadScene("StartScene");
+
+        // 게임 클리어 버튼 비활성화
+        startBtn.SetActive(false);
+        clearBtn.SetActive(false);
+        restartBtn.SetActive(false);
+
     }
 
     public void AddKillCount()
@@ -131,5 +162,8 @@ public class GameManager : MonoBehaviour
     {
         ++itemCount;    // 개수 증가
         itemText.text = "Item(count/total) " + itemCount + "/" + numItem;
+
+        // 다 찾은 경우 게임 클리어 버튼 활성화
+        if (itemCount == numItem) { clearBtn.SetActive(true); startBtn.SetActive(true); }
     }
 }

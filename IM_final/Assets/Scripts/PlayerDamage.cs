@@ -18,6 +18,7 @@ public class PlayerDamage : MonoBehaviour
     Color initColor = new Vector4(0, 1.0f, 0.0f, 1.0f);
     Color currColor;
 
+
     public bool isDamaged = false;  // 공격받았음을 체크 (ZombieAttack.cs)
 
     void Start()
@@ -37,7 +38,8 @@ public class PlayerDamage : MonoBehaviour
             // Player의 생명이 0이하이면 사망 처리
             if (currHp <= 0.0f)
             {
-                PlayerDie();
+                gameMng.restartBtn.SetActive(true);
+                gameMng.isGameOver = true;
             }
 
             // 혈흔 효과를 표현할 코루틴 함수 호출
@@ -46,22 +48,6 @@ public class PlayerDamage : MonoBehaviour
             // 생명 게이지의 색상 및 크기 변경 함수를 호출
             DisplayHpBar();
         }
-    }
-
-    // Player의 사망 처리 루틴
-    void PlayerDie()
-    {
-        //Debug.Log("PlayerDie!!");
-
-        // "ENEMY_" 태그로 지정된 모든 적 캐릭터를 추출해 배열에 저장
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("ZOMBIE");
-        // 배열의 처음부터 순회하면서 적 캐릭터의 OnPlayerDie 함수를 호출
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            enemies[i].SendMessage("OnPlayerDie", SendMessageOptions.DontRequireReceiver);
-        }
-
-        gameMng.isGameOver = true;
     }
 
     IEnumerator ShowBloodScreen()
